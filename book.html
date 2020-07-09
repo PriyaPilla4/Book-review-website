@@ -1,0 +1,82 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Book 
+{% endblock %}
+
+{% block body %}
+    <h1>Book Details</h1>
+
+    <ul>
+        <li>ISBN: {{book.isbn}}</li>
+        <li>Title: {{book.title}}</li>
+        <li>Author: {{book.author}}</li>
+        <li>Publication Year: {{book.publicationyear}}</li>
+        
+        
+    </ul>
+
+    <h5>Goodreads Review Data:</h5>
+    <ul>
+        <li>Ratings count: {{rating_count}}</li>
+        <li>Average rating: {{average_rating}}</li>
+    </ul>
+
+    <h2>Reviews:</h2>
+    <ul>
+        {% for review in reviews %}
+
+            <li> User: {{review.username}} <br>
+                Rating: {{review.rating}} <br>
+                Review: {{ review.textreview }} <br>
+                
+            </li>
+        {% else %}
+            <li>No Reviews.</li>
+        {% endfor %}
+    </ul>
+
+    <h2>Review the book:</h2>
+
+    <form action="{{ url_for('review') }}" method="post">
+
+        <div class="form-group">
+            <label>Rating:</label>
+            <select class="form-control" name="rating">
+                 
+                     <option value="1">1</option>
+                     <option value="2">2</option>
+                     <option value="3">3</option>
+                     <option value="4">4</option>
+                     <option value="5">5</option>
+                 
+            </select>
+        </div>
+
+        <div class="form-group">
+            <input class="form-control" name="review" placeholder="Write review...">
+        </div>
+
+        <div class="form-group">
+            <button class="btn btn-primary">Submit</button>
+        </div>
+
+    </form>
+
+    <form action="{{ url_for('search') }}" method="post">
+
+        <div class="form-group">
+            <button class="btn btn-primary">Search</button>
+        </div>
+
+    </form>
+
+    <form action="{{ url_for('logout') }}" method="post">
+
+        <div class="form-group">
+            <button class="btn btn-primary">Logout</button>
+        </div>
+
+    </form>
+    
+{% endblock %}

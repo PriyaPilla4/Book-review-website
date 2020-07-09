@@ -1,0 +1,44 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    search
+{% endblock %}
+
+{% block body %}
+
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/css/select2.min.css" rel="stylesheet" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/js/select2.min.js"></script>
+
+    <h1>
+        Search book:
+    </h1>
+
+    <form action="{{ url_for('book')}}" method="post" >
+
+        <div class="form-group">
+            <select class="form-control select2" name="book_id">
+                {% for book in books %}
+                    <option value= "{{book.id}}">{{book.isbn}} {{ book.title }} {{ book.author }}</option>
+                {% endfor %}
+            </select>
+        </div>
+
+        <script>
+        $('.select2').select2();
+        </script>
+
+        <div class="form-group">
+            <button class="btn btn-primary">Search</button>
+        </div>
+
+    </form>
+
+    <form action="{{ url_for('logout') }}" method="post">
+
+        <div class="form-group">
+            <button class="btn btn-primary">Logout</button>
+        </div>
+
+    </form>
+
+{% endblock %}
