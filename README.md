@@ -1,6 +1,6 @@
-# Project 1
+# Book review website
 
-Web Programming with Python and JavaScript
+
 
 application.py : the main program for running the website
 search.html : searches for the book
